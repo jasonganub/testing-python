@@ -1,6 +1,6 @@
 import unittest
 from mock import Mock
-from account.account import Account
+from account.account import Account, ConnectionError
 
 
 class TestAccount(unittest.TestCase):
@@ -15,3 +15,14 @@ class TestAccount(unittest.TestCase):
 
         # Then
         self.assertEqual(account_data, account.get_account(1))
+
+    def test_account_when_connect_exception_raised(self):
+        # Given
+        mock_data_interface = Mock()
+        mock_data_interface.get.side_effect = ConnectionError()
+
+        # When
+        account = Account(data_interface=mock_data_interface)
+
+        # Then
+        self.assertEqual("Connection error occurred. Try again.", account.get_account(1))
