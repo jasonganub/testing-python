@@ -1,5 +1,5 @@
 import unittest
-from mock import Mock
+from mock import Mock, patch
 from account.account import Account, ConnectionError
 
 
@@ -26,3 +26,14 @@ class TestAccount(unittest.TestCase):
 
         # Then
         self.assertEqual("Connection error occurred. Try again.", account.get_account(1))
+
+    @patch("account.account.requests")
+    def test_get_current_balance_returns_data_correctly(self, mock_requests):
+        # Given
+        mock_requests.get.return_value = '500'
+
+        # When
+        account = Account(Mock())
+
+        # Then
+        self.assertEqual(account.get_current_balance(1), '500')
