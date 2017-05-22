@@ -26,3 +26,5 @@ class TestAccount(unittest.TestCase):
 
         # Then
         self.assertEqual("Connection error occurred. Try again.", account.get_account(1))
+
+    det test_blah
