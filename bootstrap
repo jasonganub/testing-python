@@ -1,0 +1,15 @@
+# This file is set up the virtual environment and
+# to install the dependencies from the requirements file.
+
+
+# create virtual environment
+virtualenv ../virtualenvs/testing-python
+
+# set up environment variables
+export pip="../virtualenvs/testing-python/bin/pip"
+
+# install required libraries
+sudo -E pip install -r requirements.txt
+
+# activate virtual environment
+source activate
