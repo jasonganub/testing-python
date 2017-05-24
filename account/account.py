@@ -13,7 +13,9 @@ class Account(object):
         return result
 
     def get_current_balance(self, id_num):
-        return requests.get("http://some-account-url/{}".format(id_num))
+        response = requests.get("http://some-account-url/{}".format(id_num))
+        return {'status': response.status_code,
+                'data': response.text}
 
 
 class ConnectionError(Exception):

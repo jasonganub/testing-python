@@ -30,10 +30,15 @@ class TestAccount(unittest.TestCase):
     @patch("account.account.requests")
     def test_get_current_balance_returns_data_correctly(self, mock_requests):
         # Given
-        mock_requests.get.return_value = '500'
+        # mock a response and force that to be the return value
+        mock_response = Mock()
+        mock_response.status_code = '200'
+        mock_response.text = 'Some text data'
+        mock_requests.get.return_value = mock_response
 
         # When
         account = Account(Mock())
 
         # Then
-        self.assertEqual(account.get_current_balance(1), '500')
+        self.assertEqual(account.get_current_balance(1), {'status': '200',
+            'data': 'Some text data'})
