@@ -12,3 +12,5 @@ rednose==1.2.2
 requests==2.13.0
 six==1.10.0
 termstyle==0.1.11
+lettuce==0.2.23
+WebTest==2.0.27
