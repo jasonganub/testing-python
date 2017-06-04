@@ -2,7 +2,7 @@ from lettuce import *
 from nose.tools import assert_equal
 from webtest import TestApp
 
-from bank.app import app
+from bank_app import app
 
 
 @step(u'I visit the homepage')
